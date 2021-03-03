@@ -1,8 +1,12 @@
-class TradingCard extneds React.Compnent{
+class TradingCard extends React.Compnent{
   render() {
   return (
     <div className="card">
-      <p>Name: {this.props.name}</p>)
+      <p>Name: {this.props.name}</p>
+      <img src={this.props.imgUrl}/>
+      <p>Skill: {this.props.skill}</p>
+    </div> 
+  );
   }
 }
 
@@ -14,20 +18,17 @@ class TradingCardContainer extends React.Component {
     this.updateCards = this.updateCards.bind(this);
   }
 
-  updateCards() {
-    const floatCard = {
-      name: 'Float',
-      skill: 'Baking Pretzels',
-      imgUrl: '/static/img/float.jpg'
-    };
-
-    this.setState({
-      cards: [floatCard]
-    });
+  updateCards(response) {
+    const cards = response.cards;
+    this.setState({cards: cards});
   }
 
-  componentDidMount() {
-    this.upateCards();
+  getCardData() {
+    $.get('cards.json', this.updateCards);
+  }
+
+    componentDidMount() {
+      this.getCardData();
   }
 
   render() {

@@ -47,7 +47,6 @@ $('#new-card-form').on('submit', (evt) => {
 
   $.post('/api/cards', formData, (response) => {
     if (response.success) {
-      // Success! We should retrieve the latest cards data
       getAllCards();
     } else {
       alert(`Oops, something went wrong. Error: ${response.error}`);
