@@ -24,7 +24,7 @@ class TradingCardContainer extends React.Component {
   }
 
   getCardData() {
-    $.get('cards.json', this.updateCards);
+    $.get('/cards.json', this.updateCards);
   }
 
     componentDidMount() {
